@@ -28,7 +28,7 @@ jobs:
         run: echo "Run firewalls test"
       - name: Run vpc test
         if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'vpc' }}
-        run: echo "Run vpc test"
+        run: echo "Run vpc test" && exit 1
       - name: Run dns test
         if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'dns' }}
         run: echo "Run dns test"
