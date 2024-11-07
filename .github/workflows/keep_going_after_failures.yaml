@@ -35,3 +35,6 @@ jobs:
       - name: Run certificates test
         if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'certificates' }}
         run: echo "Run certificates test"
+      - name: Report failures
+        if: failure()
+        run: echo "Failures detected"
