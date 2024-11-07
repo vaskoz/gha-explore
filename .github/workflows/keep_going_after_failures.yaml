@@ -1,0 +1,36 @@
+name: keep_going_after_failures
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_type:
+        description: 'Type of run: full or specify the step to test'
+        required: true
+        default: full
+        type: choice
+        options:
+          - full
+          - firewalls
+          - vpc
+          - dns
+          - certificates
+  schedule:
+    # Run at minute 10 of every hour.
+    - cron: "10 * * * *"
+
+jobs:
+  run_e2e_tests:
+    name: e2e-tests
+    steps:
+      - name: Run firewalls test
+        if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'firewalls' }}
+        run: echo "Run firewalls test"
+      - name: Run vpc test
+        if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'vpc' }}
+        run: echo "Run vpc test"
+      - name: Run dns test
+        if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'dns' }}
+        run: echo "Run dns test"
+      - name: Run certificates test
+        if: ${{ github.event.inputs.run_type == 'full' || github.event.inputs.run_type == 'certificates' }}
+        run: echo "Run certificates test"
