@@ -24,16 +24,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run firewalls test
-        if: ${{ (github.event.inputs.run_type == 'full' || !cancelled()) || github.event.inputs.run_type == 'firewalls' }}
+        if: ${{ (github.event.inputs.run_type == 'full' && !cancelled()) || github.event.inputs.run_type == 'firewalls' }}
         run: echo "Run firewalls test"
       - name: Run vpc test
-        if: ${{ (github.event.inputs.run_type == 'full' || !cancelled()) || github.event.inputs.run_type == 'vpc' }}
+        if: ${{ (github.event.inputs.run_type == 'full' && !cancelled()) || github.event.inputs.run_type == 'vpc' }}
         run: echo "Run vpc test" && exit 1
       - name: Run dns test
-        if: ${{ (github.event.inputs.run_type == 'full' || !cancelled()) || github.event.inputs.run_type == 'dns' }}
+        if: ${{ (github.event.inputs.run_type == 'full' && !cancelled()) || github.event.inputs.run_type == 'dns' }}
         run: echo "Run dns test"
       - name: Run certificates test
-        if: ${{ (github.event.inputs.run_type == 'full' || !cancelled()) || github.event.inputs.run_type == 'certificates' }}
+        if: ${{ (github.event.inputs.run_type == 'full' && !cancelled()) || github.event.inputs.run_type == 'certificates' }}
         run: echo "Run certificates test"
       - name: Report failures
         if: failure()
