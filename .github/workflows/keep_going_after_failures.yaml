@@ -14,9 +14,9 @@ on:
           - vpc
           - dns
           - certificates
-  schedule:
-    # Run at minute 10 of every hour.
-    - cron: "10 * * * *"
+  # schedule:
+  #   # Run at minute 10 of every hour.
+  #   - cron: "10 * * * *"
 
 jobs:
   run_e2e_tests:
